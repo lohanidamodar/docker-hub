@@ -2,7 +2,7 @@ FROM node:8.11
 MAINTAINER dlohani48 [at] gmail [dot] com
 
 ENV DEBIAN_FRONTEND=noninteractive \
-    REACT_NATIVE_VERSION=4.0.1 \
+    REACT_NATIVE_CLI_VERSION=2.0.1 \
     CORDOVA_VERSION=8.0.0 \
     YARN_VERSION=1.7.0 \
     # Fix for the issue with Selenium, as described here:
@@ -16,7 +16,7 @@ RUN apt-get update &&  \
     apt-get update &&  \
     mkdir source && \
     mkdir -p /root/.cache/yarn/ && \ 
-    yarn global add react-native-cli
+    yarn global add react-native-cli@REACT_NATIVE_CLI_VERSION
 
 WORKDIR source
 EXPOSE 8081 8100
