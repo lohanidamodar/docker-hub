@@ -13,8 +13,9 @@ RUN apt-get update &&  \
     curl -o- -L https://yarnpkg.com/install.sh | bash - && \
     apt-get update &&  \
     mkdir source && \
-    mkdir -p /root/.cache/yarn/ && \ 
-    yarn global add react-native-cli@REACT_NATIVE_CLI_VERSION
+    mkdir -p /root/.cache/yarn/
+
+RUN yarn global add react-native-cli@"$REACT_NATIVE_CLI_VERSION"
 
 WORKDIR source
 EXPOSE 8081 8100
