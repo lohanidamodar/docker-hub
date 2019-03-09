@@ -1,5 +1,5 @@
 FROM node:10
-MAINTAINER dlohani48 [at] gmail [dot] com
+LABEL maintainer="dlohani48@gmail.com"
 
 ENV DEBIAN_FRONTEND=noninteractive \
     CREATE_REACT_APP_VERSION=2.1.1 \
@@ -14,12 +14,14 @@ RUN apt-get update &&  \
     echo "deb http://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
     apt-get update &&  \
     apt-get install yarn -y --no-install-recommends && \
-    mkdir source && \
+    mkdir app && \
     mkdir -p /root/.cache/yarn/
 
 RUN yarn global add create-react-app@"$REACT_NATIVE_CLI_VERSION"
 
+COPY ./entrypoint.sh /
 
-WORKDIR source
+WORKDIR /app
 EXPOSE 3000
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["yarn", "start"]
