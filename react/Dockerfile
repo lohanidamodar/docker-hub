@@ -2,7 +2,7 @@ FROM node:10
 LABEL maintainer="dlohani48@gmail.com"
 
 ENV DEBIAN_FRONTEND=noninteractive \
-    CREATE_REACT_APP_VERSION=2.1.1 \
+    CREATE_REACT_APP_VERSION=3.1.1 \
     # Fix for the issue with Selenium, as described here:
     # https://github.com/SeleniumHQ/docker-selenium/issues/87
     DBUS_SESSION_BUS_ADDRESS=/dev/null
@@ -17,7 +17,7 @@ RUN apt-get update &&  \
     mkdir app && \
     mkdir -p /root/.cache/yarn/
 
-RUN yarn global add create-react-app@"$REACT_NATIVE_CLI_VERSION"
+RUN yarn global add create-react-app@"$CREATE_REACT_APP_VERSION"
 
 COPY ./entrypoint.sh /
 
